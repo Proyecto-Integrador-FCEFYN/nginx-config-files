@@ -1,0 +1,5 @@
+El certificado que hay que subir a la esp32 es el que aparece como localhost.crt
+
+Eso se comprueba con este comando:
+
+openssl s_client -showcerts -connect 192.168.1.100:443
