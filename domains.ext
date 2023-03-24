@@ -5,7 +5,7 @@ subjectAltName = @alt_names
 [alt_names]
 DNS.1 = localhost
 DNS.2 = fake1.local
-DNS.3 = fake2.local
-IP.1 = 192.168.1.110
+DNS.3 = ingreso.lac
+IP.1 = 192.168.1.253
 IP.2 = 192.168.24.120
 
