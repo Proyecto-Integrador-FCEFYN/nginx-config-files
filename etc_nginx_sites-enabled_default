@@ -9,6 +9,7 @@ server {
     satisfy all;
 
     allow 192.168.1.0/24;
+    allow 192.168.24.0/24;
     deny  all;
 
     auth_basic "Acceso a la API";
