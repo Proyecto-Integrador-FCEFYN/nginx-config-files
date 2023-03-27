@@ -11,7 +11,7 @@ For online certificates, use Let's Encrypt instead ([tutorial](https://gist.gith
 
 Generate `RootCA.pem`, `RootCA.key` & `RootCA.crt`:
 
- openssl req -x509 -nodes -new -sha256 -days 1024 -newkey rsa:2048 -keyout RootCA.key -out RootCA.pem -subj "/C=US/CN=Example-Root-CA"
+ openssl req -x509 -nodes -new -sha256 -days 1024 -newkey rsa:2048 -keyout RootCA.key -out RootCA.pem -subj "/C=AR/CN=Laboratorio de Arquitecturas de Computadoras"
  openssl x509 -outform pem -in RootCA.pem -out RootCA.crt
 
 Note that `Example-Root-CA` is an example, you can customize the name.
@@ -34,7 +34,7 @@ First, create a file `domains.ext` that lists all your local domains:
 
 Generate `localhost.key`, `localhost.csr`, and `localhost.crt`:
 
- openssl req -new -nodes -newkey rsa:2048 -keyout localhost.key -out localhost.csr -subj "/C=US/ST=YourState/L=YourCity/O=Example-Certificates/CN=localhost.local"
+ openssl req -new -nodes -newkey rsa:2048 -keyout localhost.key -out localhost.csr -subj "/C=AR/ST=Cordoba/L=Cordoba/O=Nuestra-Certificacion/CN=ingreso.lac"
  openssl x509 -req -sha256 -days 1024 -in localhost.csr -CA RootCA.pem -CAkey RootCA.key -CAcreateserial -extfile domains.ext -out localhost.crt
 
 Note that the country / state / city / name in the first command  can be customized.
@@ -120,3 +120,27 @@ sudo htpasswd htpasswd user2
 
 - Usuario: usuario-api
 - Password: password-api
+
+### Configuracion IP estatica
+
+```bash
+   nmcli con show
+   sudo nmcli device wifi connect tesis password mediamaquina ifname wlxf4f26d09b2ff
+   sudo nmcli con mod "VALENTINA " ipv4.addresses "192.168.1.253/24" ipv4.gateway "192.168.1.1" ipv4.dns "192.168.1.1,8.8.8.8" ipv4.method "manual"
+```
+
+### Configuracion ARCHIVOS ESTATICOS
+
+<https://gist.github.com/XUJiahua/ab64998268952d590f8447029e6105ea>
+
+<https://stackoverflow.com/questions/10631933/nginx-static-file-serving-confusion-with-root-alias>
+
+```bash
+location /static/ 
+{
+    alias /var/www/example.com/current/static/;
+    gzip_static on;
+    expires max;
+    add_header Cache-Control public;
+}
+```
