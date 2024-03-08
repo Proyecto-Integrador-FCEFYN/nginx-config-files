@@ -1,7 +1,14 @@
+server {
+    listen 80;
+    server_name ingreso.lac;
+
+    # Redireccionamiento HTTP a HTTPS
+    return 301 https://$host$request_uri;
+}
 
 server {
     listen 443 ssl;
-    server_name fake1.local;
+    server_name ingreso.lac;
 
     ssl_certificate      /home/agustin/tesis/nginx-config-files/localhost.crt;
     ssl_certificate_key  /home/agustin/tesis/nginx-config-files/localhost.key;
